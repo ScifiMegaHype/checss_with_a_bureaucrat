@@ -1,3 +1,5 @@
+
+import os
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit, join_room
 from chess_logic import (
@@ -9,6 +11,7 @@ from chess_logic import (
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "bureaucrat-chess"
+app._static_folder = os.path.abspath('templates/static/')
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # room_id -> game state
